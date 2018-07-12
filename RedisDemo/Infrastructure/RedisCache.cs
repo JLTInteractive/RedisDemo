@@ -28,7 +28,7 @@ namespace RedisDemo.Infrastructure
             _cache.Set(key, value);
         }
 
-        public void Clear()
+        public static void Clear()
         {
             var connection = RedisConnection.Instance.Connection;
             var endpoints = connection.GetEndPoints(true);

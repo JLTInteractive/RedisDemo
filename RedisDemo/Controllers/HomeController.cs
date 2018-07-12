@@ -23,7 +23,7 @@ namespace RedisDemo.Controllers
             if (data == null)
                 throw new InvalidOperationException("Data is null");
 
-            cache.Clear();
+            RedisCache.Clear();
 
             return View();
         }
