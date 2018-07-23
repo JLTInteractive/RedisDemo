@@ -25,17 +25,19 @@ namespace RedisDemo.Controllers
             }
             catch (Exception e)
             {
-                return View(new CounterView
-                {
-                    HasError = true,
-                    ErrorMessage = e.Message
-                });
+                return View(
+                    new CounterView
+                    {
+                        HasError = true,
+                        ErrorMessage = e.Message
+                    });
             }
 
-            return View(new CounterView
-            {
-                Counter = counter
-            });
+            return View(
+                new CounterView
+                {
+                    Counter = counter
+                });
         }
     }
 }
