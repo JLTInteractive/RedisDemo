@@ -1,3 +1,15 @@
-﻿
+﻿@model RedisDemo.Infrastructure.CounterView
 
-<h1>Hello World</h1>
+<h1>My Containerized Application</h1>
+
+@if (Model.HasError)
+{
+    <h4>Ooopss!!</h4>
+    <p>Error: <b>@Model.ErrorMessage</b></p>
+}
+else
+{
+    <h4>Welcome! Page hit count is : <b>@Model.Counter</b></h4>
+    <h5>Machine Name: @Model.MachineName</h5>
+    <h5>Machine IP: @Model.MachineIp</h5>
+}

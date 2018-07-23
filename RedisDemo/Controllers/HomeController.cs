@@ -12,20 +12,30 @@ namespace RedisDemo.Controllers
     {
         public ActionResult Index()
         {
-            const string message = "Hello World";
+            int counter;
 
-            var cache = new RedisCache();
+            try
+            {
+                var cache = new RedisCache();
+                
+                counter = cache.Get<int>("counter");
+                counter++;
+            
+                cache.Put("counter", counter);
+            }
+            catch (Exception e)
+            {
+                return View(new CounterView
+                {
+                    HasError = true,
+                    ErrorMessage = e.Message
+                });
+            }
 
-            cache.Put(nameof(message), message);
-
-            var data = cache.Get<string>(nameof(message));
-
-            if (data == null)
-                throw new InvalidOperationException("Data is null");
-
-            RedisCache.Clear();
-
-            return View();
+            return View(new CounterView
+            {
+                Counter = counter
+            });
         }
     }
 }

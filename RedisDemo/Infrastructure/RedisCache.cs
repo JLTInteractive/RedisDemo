@@ -1,6 +1,5 @@
 ﻿#region
 
-using System.Linq;
 using StackExchange.Redis;
 
 #endregion
@@ -26,17 +25,6 @@ namespace RedisDemo.Infrastructure
         public void Put(string key, object value)
         {
             _cache.Set(key, value);
-        }
-
-        public static void Clear()
-        {
-            var connection = RedisConnection.Instance.Connection;
-            var endpoints = connection.GetEndPoints(true);
-
-            foreach (var server in endpoints.Select(endpoint => connection.GetServer(endpoint)))
-            {
-                server.FlushAllDatabases();
-            }
         }
     }
 }
